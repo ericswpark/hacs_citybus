@@ -50,9 +50,6 @@ class CityBusDataUpdateCoordinator(DataUpdateCoordinator):
     async def _async_update_data(self) -> dict[str, Any]:
         """Fetch data from CityBus."""
 
-        _stops
-
-
         def _update_data() -> dict:
             """Fetch data from CityBus."""
             self.logger.debug("Updating data from API (executor)")
