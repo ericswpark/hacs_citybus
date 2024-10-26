@@ -1,0 +1,11 @@
+{
+  "codeowners": ["@ericswpark"],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://ericswpark/ha_citybus",
+  "domain": "citybus",
+  "iot_class": "cloud_polling",
+  "name": "CityBus",
+  "requirements": ["citybussin==0.0.1a1"],
+  "version": "0.0.1"
+}
