@@ -27,8 +27,8 @@ class CityBusDataUpdateCoordinator(DataUpdateCoordinator):
             update_interval=timedelta(seconds=30),
         )
         self.citybussin = Citybussin()
-        self._route_stops = set[RouteStop] = set()
-        self._estimates = dict[RouteStop, dict[str, Any]] = {}
+        self._route_stops: set[RouteStop] = set()
+        self._estimates: dict[RouteStop, dict[str, Any]] = {}
 
     def add_route_stop(self, route_key: str, direction_key: str, stop_code: str) -> None:
         """Tell coordinator to start tracking a given stop for a route and direction."""
