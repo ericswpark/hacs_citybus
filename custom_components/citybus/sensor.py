@@ -27,7 +27,7 @@ async def async_setup_entry(
     entry_route = config.data[CONF_ROUTE]
     entry_direction = config.data[CONF_DIRECTION]
     entry_stop = config.data[CONF_STOP]
-    coordinator_key = f"{entry_route}_{entry_direction}_{entry_stop}"
+    coordinator_key = f"{entry_route}-{entry_direction}-{entry_stop}"
 
     coordinator: CityBusDataUpdateCoordinator = hass.data[DOMAIN].get(coordinator_key)
 
