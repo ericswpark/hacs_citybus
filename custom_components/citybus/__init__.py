@@ -49,7 +49,7 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         coordinator: CityBusDataUpdateCoordinator = hass.data[DOMAIN][coordinator_key]
         coordinator.remove_route_stop(entry_route, entry_direction, entry_stop)
 
-        if not coordinator.has_routes():
+        if not coordinator.has_route_stops():
             await coordinator.async_shutdown()
             hass.data[DOMAIN].pop(coordinator_key)
 
