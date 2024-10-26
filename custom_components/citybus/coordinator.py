@@ -23,7 +23,6 @@ class CityBusDataUpdateCoordinator(DataUpdateCoordinator):
         super().__init__(
             hass,
             _LOGGER,
-            config_entry=None,
             name=DOMAIN,
             update_interval=timedelta(seconds=30),
         )
