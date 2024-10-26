@@ -38,7 +38,7 @@ def _get_routes(citybussin: Citybussin) -> dict[str, str]:
     return {a["key"]: a["shortName"] for a in citybussin.get_bus_routes()}
 
 def _get_directions(citybussin: Citybussin, route_key: str) -> dict[str, str]:
-    return {a["key"]: a["name"] for a in citybussin.get_route_directions(route_key)}
+    return {a["direction"]["key"]: a["destination"] for a in citybussin.get_route_directions(route_key)}
 
 def _get_stops(citybussin: Citybussin, route_key: str) -> dict[str, str]:
     return {a["stopCode"]: a["name"] for a in citybussin.get_route_stops(route_key)}
