@@ -117,6 +117,6 @@ class CityBusNextBusSensor(CoordinatorEntity[CityBusDataUpdateCoordinator], Sens
             )
 
             first_bus = estimates[0]
-            self._attr_native_value = utc_from_timestamp(datetime.fromisoformat(first_bus["estimatedDepartTimeUtc"]))
+            self._attr_native_value = datetime.fromisoformat(first_bus["estimatedDepartTimeUtc"])
         
         self.async_write_ha_state()
