@@ -103,7 +103,7 @@ class CityBusFlowHandler(ConfigFlow, domain=DOMAIN):
             return await self.async_step_stop()
 
         self._directions = await self.hass.async_add_executor_job(
-            _get_directions, self._citybussin, self.data[CONF_ROUTE]
+            _get_directions, self._citybussin, self.data[CONF_ROUTE]["key"]
         )
 
         return self.async_show_form(
@@ -142,7 +142,7 @@ class CityBusFlowHandler(ConfigFlow, domain=DOMAIN):
             )
 
         self._stops = await self.hass.async_add_executor_job(
-            _get_stops, self._citybussin, self.data[CONF_ROUTE]
+            _get_stops, self._citybussin, self.data[CONF_ROUTE]["key"]
         )
 
         return self.async_show_form(
