@@ -122,7 +122,7 @@ class CityBusFlowHandler(ConfigFlow, domain=DOMAIN):
 
             return await self.async_step_stop()
 
-        route_key = _get_route_key_from_route_name(self.data[CONF_ROUTE])
+        route_key = _get_route_key_from_route_name(self._citybussin, self.data[CONF_ROUTE])
 
         self._directions = await self.hass.async_add_executor_job(
             _get_directions, self._citybussin, route_key
