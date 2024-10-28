@@ -57,9 +57,6 @@ def _get_route_key_from_route_name(citybussin: Citybussin, route_name: str) -> s
 def _get_directions(citybussin: Citybussin, route_key: str) -> dict[str, str]:
     return {a["direction"]["key"]: a["destination"] for a in citybussin.get_route_directions(route_key)}
 
-def _get_direction_key_from_direction_name(citybussin: Citybussin, route_key: str, direction_name: str) -> str:
-    return [key for key, value in _get_directions(citybussin, route_key) if value == direction_name][0]
-
 def _get_stops(citybussin: Citybussin, route_key: str) -> dict[str, str]:
     return {a["stopCode"]: a["name"] for a in citybussin.get_route_stops(route_key)}
 
