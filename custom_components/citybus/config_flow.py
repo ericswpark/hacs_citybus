@@ -121,11 +121,13 @@ class CityBusFlowHandler(ConfigFlow, domain=DOMAIN):
             self.data[CONF_DIRECTION] = user_input[CONF_DIRECTION]
 
             return await self.async_step_stop()
-
-        route_key = _get_route_key_from_route_name(self._citybussin, self.data[CONF_ROUTE])
-
+        
+        self._route_key = await self.hass.async_add_executor_job(
+            _get_route_key_from_route_name, self._citybussin, self.data[CONF_ROUTE]
+        )
+        
         self._directions = await self.hass.async_add_executor_job(
-            _get_directions, self._citybussin, route_key
+            _get_directions, self._citybussin, self._route_key
         )
 
         return self.async_show_form(
@@ -152,10 +154,13 @@ class CityBusFlowHandler(ConfigFlow, domain=DOMAIN):
 
             route_name = self.data[CONF_ROUTE]
             direction_destination = self.data[CONF_DIRECTION]
-            route_key = _get_route_key_from_route_name(self._citybussin, route_name)
 
-            stop = self.data[CONF_STOP]
-            stop_name = self._stops[stop]
+            self._route_key = await self.hass.async_add_executor_job(
+                _get_route_key_from_route_name, self._citybussin, route_name
+            )
+            
+            stop_code = self.data[CONF_STOP]
+            stop_name = self._stops[stop_code]
 
             return self.async_create_entry(
                 title=f"{route_name} - {direction_destination} - {stop_name}",
@@ -163,7 +168,7 @@ class CityBusFlowHandler(ConfigFlow, domain=DOMAIN):
             )
 
         self._stops = await self.hass.async_add_executor_job(
-            _get_stops, self._citybussin, route_key
+            _get_stops, self._citybussin, self._route_key
         )
 
         return self.async_show_form(
