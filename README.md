@@ -2,6 +2,11 @@
 
 Custom integration for the CityBus API to Home Assistant. See upcoming bus times for each route, direction, and stop combination.
 
+## Deprecation Notice
+
+This integration no longer works due to issues with the underlying API.
+
+
 ## Installation
 
 - Install HACS
